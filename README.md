@@ -77,7 +77,7 @@ To run this project locally, follow these steps:
    npm run dev
    ```
 
-4. **Open in Browser**: Visit `http://localhost:5173` in your browser to view the project.
+4. **Open in Browser**: Visit `http://localhost:3000` in your browser to view the project.
 
 ## Deployment
 

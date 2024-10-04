@@ -41,7 +41,7 @@ const Header = () => {
 	];
 
 	return (
-		<header className="z-50 fixed left-1/2 -translate-x-1/2 top-8 hidden md:flex flex-row items-center gap-x-16 bg-googleGrey bg-opacity-10 backdrop-blur py-2 px-3 rounded-full border-opacity-10 border border-googleGrey">
+		<header data-testid="header" className="z-50 fixed left-1/2 -translate-x-1/2 top-8 hidden md:flex flex-row items-center gap-x-16 bg-googleGrey bg-opacity-10 backdrop-blur py-2 px-3 rounded-full border-opacity-10 border border-googleGrey">
 			<a href="#hero" className="flex items-center h-fit w-fit">
 				<Image
 					src={BracketIcon}

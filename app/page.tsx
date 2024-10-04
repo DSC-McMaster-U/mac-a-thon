@@ -2,6 +2,8 @@ import { SiIconFromName } from "@/utils/icon";
 import HeroIllustration from "@/assets/illustrations/HeroIllustration.webp";
 import UNGoalsIllustration from "@/assets/illustrations/UNGoalsIllustration.webp";
 import Image from 'next/image';
+import Header from "./components/header";
+import Footer from "./components/footer";
 
 const stats = [
 	{
@@ -217,11 +219,13 @@ const FAQ = () => {
 const Home = () => {
 	return (
 		<>
+      <Header/>
       <Hero />
       <About />
       <Events />
       <Sponsors />
       <FAQ />
+      <Footer/>
 		</>
 	);
 };

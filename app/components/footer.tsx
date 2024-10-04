@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Footer = () => {
     return (
-        <footer>
+        <footer data-testid="footer">
             <nav className="flex flex-row justify-between w-full">
                 <ul className="flex flex-row">
                     <li>

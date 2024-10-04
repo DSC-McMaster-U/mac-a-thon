@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import Footer from "./components/footer";
-import Header from "./components/header";
+import "@/app/globals.css";
 
 export const metadata: Metadata = {
   title: "GDSC McMaster U",
@@ -21,9 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header/>
         {children}
-        <Footer/>
       </body>
     </html>
   );

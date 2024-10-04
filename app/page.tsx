@@ -1,67 +1,11 @@
-import { SiIconFromName } from "@/utils/icon";
 import HeroIllustration from "@/assets/illustrations/HeroIllustration.webp";
 import UNGoalsIllustration from "@/assets/illustrations/UNGoalsIllustration.webp";
 import Image from 'next/image';
-import Header from "./components/header";
-import Footer from "./components/footer";
-
-const stats = [
-	{
-		number: 800,
-		title: "Attendees",
-	},
-	{
-		number: 200,
-		title: "Projects",
-	},
-	{
-		number: 55,
-		title: "Mentors",
-	},
-];
-
-const sponsors = [
-	{
-		name: "Google",
-		icon: "SiGoogle",
-		href: "https://google.com",
-	},
-	{
-		name: "Microsoft",
-		icon: "SiMicrosoft",
-		href: "https://microsoft.com",
-	},
-	{
-		name: "Facebook",
-		icon: "SiFacebook",
-		href: "https://facebook.com",
-	},
-	{
-		name: "GitHub",
-		icon: "SiGithub",
-		href: "https://github.com",
-	},
-	{
-		name: "X",
-		icon: "SiX",
-		href: "https://x.com",
-	},
-	{
-		name: "LinkedIn",
-		icon: "SiLinkedin",
-		href: "https://linkedin.com",
-	},
-	{
-		name: "Instagram",
-		icon: "SiInstagram",
-		href: "https://instagram.com",
-	},
-	{
-		name: "Discord",
-		icon: "SiDiscord",
-		href: "https://discord.com",
-	},
-];
+import Header from "@/app/components/header";
+import Footer from "@/app/components/footer";
+import { client } from "@/sanity/lib/client";
+import { Sponsor, Statistic } from "@/types/sanity";
+import { urlFor } from "@/sanity/lib/image";
 
 const Hero = () => {
 	return (
@@ -120,7 +64,21 @@ const About = () => {
 	);
 };
 
-const Events = () => {
+const fetchStatistics = async () => {
+  const Statistics = await client.fetch(
+      `*[_type == 'statistic']{
+        _id,
+        title,
+        value,
+        category,
+        description,
+      }`,
+  );
+  return Statistics;
+};
+
+const Events = async () => {
+  const statistics = await fetchStatistics();
 	return (
 		<section id="events" className="flex flex-col justify-start items-start">
 			<div
@@ -132,10 +90,10 @@ const Events = () => {
 					id="stats"
 					className="flex flex-row items-center justify-evenly gap-y-4 md:gap-y-8"
 				>
-					{stats.map((stat, index) => (
-						<div key={index} className="flex flex-col gap-y-2 md:gap-y-4">
-							<h3>{stat.number}</h3>
-							<h4>{stat.title}</h4>
+					{statistics.map((statistic: Statistic) => (
+						<div key={statistic._id} className="flex flex-col gap-y-2 md:gap-y-4">
+							<h3>{statistic.value}</h3>
+							<h4>{statistic.title}</h4>
 						</div>
 					))}
 				</div>
@@ -151,7 +109,22 @@ const Events = () => {
 	);
 };
 
-const Sponsors = () => {
+const fetchSponsors = async () => {
+  const Sponsor = await client.fetch(
+      `*[_type == 'sponsor']{
+        _id,
+        name,
+        logo,
+        website,
+      }`,
+  );
+
+  return Sponsor;
+};
+
+const Sponsors = async () => {
+  const sponsors = await fetchSponsors();
+  console.log(sponsors);
 	return (
 		<section id="sponsors" className="flex flex-col justify-start items-start">
 			<div
@@ -163,12 +136,15 @@ const Sponsors = () => {
 					id="sponsors-logo-grid"
 					className="grid grid-cols-4 w-full place-content-center place-items-center gap-4 md:gap-8"
 				>
-					{sponsors.map((sponsor, index) => (
-						<a href={sponsor.href} key={index} target="_blank" rel="noreferrer">
-							<SiIconFromName
-								icon={sponsor.icon}
-								className="h-8 md:h-12 w-auto hover:text-googleGrey duration-300 transition-colors"
-							/>
+					{sponsors.map((sponsor: Sponsor) => (
+						<a href={sponsor.website} key={sponsor._id} target="_blank" rel="noreferrer">
+							<Image
+                src={urlFor(sponsor.logo.asset).url()}
+                alt={sponsor.name}
+                layout="responsive"
+                width={150}
+                height={150}
+              />
 						</a>
 					))}
 				</div>

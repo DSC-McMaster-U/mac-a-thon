@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "@/app/globals.css";
 
 export const metadata: Metadata = {
-  title: "GDSC McMaster U",
-  description: "Google Developer Student Club at McMaster University bridges the gap between theory and practice through solving real-world problems.",
+  title: "Solution Challenge | GDSC McMaster U",
+  description: "Solution Challenge is an annual hackathon hosted by GDSC McMaster U.",
   icons: [
     {
       url: "/icon.svg",

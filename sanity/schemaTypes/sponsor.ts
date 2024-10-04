@@ -9,6 +9,7 @@ export const sponsorSchema = defineType({
       name: 'name',
       title: 'Sponsor Name',
       type: 'string',
+      description: 'The name of the sponsor (e.g. "Google", "Microsoft")',
       validation: (Rule) => Rule.required().error('Sponsor name is required'),
     }),
     defineField({
@@ -18,12 +19,14 @@ export const sponsorSchema = defineType({
       options: {
         hotspot: true, // Allows cropping for better focus
       },
+      description: 'The logo of the sponsor (e.g. "Google", "Microsoft")',
       validation: (Rule) => Rule.required().error('Sponsor logo is required'),
     }),
     defineField({
       name: 'website',
       title: 'Sponsor Website',
       type: 'url',
+      description: 'The website of the sponsor (e.g. "https://www.google.com", "https://www.microsoft.com")',
       validation: (Rule) =>
         Rule.uri({
           scheme: ['http', 'https'],

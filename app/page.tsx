@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import { client } from "@/sanity/lib/client";
-import { Sponsor, Statistic } from "@/types/sanity";
+import type { FAQ, Sponsor, Statistic } from "@/types/sanity";
 import { urlFor } from "@/sanity/lib/image";
 
 const Hero = () => {
@@ -64,22 +64,19 @@ const About = () => {
 	);
 };
 
-const fetchStatistics = async () => {
-  const Statistics = await client.fetch(
-      `*[_type == 'statistic']{
-        _id,
-        title,
-        value,
-        category,
-        description,
-      }`,
-  );
-  return Statistics;
-};
-
 const Events = async () => {
-  const statistics = await fetchStatistics();
-	return (
+
+  const statistics = await client.fetch(
+    `*[_type == 'statistic']{
+      _id,
+      title,
+      value,
+      category,
+      description,
+    }`,
+  );
+
+  return (
 		<section id="events" className="flex flex-col justify-start items-start">
 			<div
 				id="events-content"
@@ -109,22 +106,17 @@ const Events = async () => {
 	);
 };
 
-const fetchSponsors = async () => {
-  const Sponsor = await client.fetch(
-      `*[_type == 'sponsor']{
-        _id,
-        name,
-        logo,
-        website,
-      }`,
+const Sponsors = async () => {
+
+  const sponsors = await client.fetch(
+    `*[_type == 'sponsor']{
+      _id,
+      name,
+      logo,
+      website,
+    }`,
   );
 
-  return Sponsor;
-};
-
-const Sponsors = async () => {
-  const sponsors = await fetchSponsors();
-  console.log(sponsors);
 	return (
 		<section id="sponsors" className="flex flex-col justify-start items-start">
 			<div
@@ -153,24 +145,17 @@ const Sponsors = async () => {
 	);
 };
 
-const FAQ = () => {
-	const faq = [
-		{
-			question: "What is the Google Solution Challenge?",
-			answer:
-				"The Google Solution Challenge is an annual global hackathon designed to empower students to create innovative solutions using Google technologies. Participants from universities worldwide come together to collaborate and develop impactful projects that address one or more of the United Nations’ 17 Sustainable Development Goals.",
-		},
-		{
-			question: "Who can participate?",
-			answer:
-				"The Solution Challenge welcomes students of all experience levels, from beginners to advanced developers. Teams have the opportunity to learn new technologies, connect with like-minded peers, and receive mentorship from industry professionals.",
-		},
-		{
-			question: "How can I get involved?",
-			answer:
-				"Stay tuned for updates on how to participate in the next Google Solution Challenge. Follow us on social media and join our mailing list to receive the latest news and announcements.",
-		},
-	];
+
+
+const FAQ = async () => {
+
+  const faqs = await client.fetch(
+      `*[_type == 'faq']{
+        _id,
+        question,
+        answer,
+      }`,
+  );
 
 	return (
 		<section id="faq" className="flex flex-col justify-start items-start">
@@ -180,10 +165,10 @@ const FAQ = () => {
 			>
 				<h2>Questions?</h2>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-					{faq.map((question, index) => (
-						<div key={index} className="flex flex-col gap-y-2 md:gap-y-4">
-							<h3>{question.question}</h3>
-							<p>{question.answer}</p>
+					{faqs.map((faq: FAQ) => (
+						<div key={faq._id} className="flex flex-col gap-y-2 md:gap-y-4">
+							<h3>{faq.question}</h3>
+							<p>{faq.answer}</p>
 						</div>
 					))}
 				</div>

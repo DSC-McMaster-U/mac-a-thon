@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import { client } from "@/sanity/lib/client";
-import type { FAQ, Sponsor, Statistic } from "@/types/sanity";
+import type { FAQ, Sponsor, Statistic, PastEvent, NewEvent } from "@/types/sanity";
 import { urlFor } from "@/sanity/lib/image";
 
 const Hero = () => {
@@ -76,6 +76,28 @@ const Events = async () => {
     }`,
   );
 
+  const upcomingEvents: NewEvent[] = await client.fetch(
+	`*[_type == 'newEvent'] | order(dateTimeRange.start desc) {
+	_id,
+	title,
+	dateTimeRange,
+	location,
+	description,
+	}`,
+  );
+
+  const pastEvents = await client.fetch(
+	`*[_type == 'pastEvent'] | order(dateTimeRange.start desc) {
+	_id,
+	title,
+	dateTimeRange,
+	location,
+	description,
+	picture, 
+	winners,
+	}`,
+  );
+
   return (
 		<section id="events" className="flex flex-col justify-start items-start">
 			<div
@@ -101,6 +123,39 @@ const Events = async () => {
 						className="w-full md:w-3/4 flex"
 					/>
 				</div>
+			</div>
+
+			{/* Upcoming Events Section */}
+			<div id="upcoming-events" className="flex flex-col gap-y-4 md:gap-y-8">
+				<h4>Upcoming Events</h4>
+				{upcomingEvents.map((event: NewEvent) => (
+					<div key={event._id} className="flex flex-col gap-y-2">
+						<h5>{event.title}</h5>
+						<p>
+							{new Date(event.dateTimeRange.start).toLocaleString()} -{' '}
+							{new Date(event.dateTimeRange.end).toLocaleString()}
+						</p>
+						<p>{event.description}</p>
+						<p>Location: {event.location}</p>
+					</div>
+				))}
+			</div>
+
+			{/* Past Events Section */}
+			<div id="past-events" className="flex flex-col gap-y-4 md:gap-y-8">
+				<h4>Past Events</h4>
+				{pastEvents.map((event: PastEvent) => (
+					<div key={event._id} className="flex flex-col gap-y-2">
+					<h5>{event.title}</h5>
+					<p>
+						{new Date(event.dateTimeRange.start).toLocaleString()} -{' '}
+						{new Date(event.dateTimeRange.end).toLocaleString()}
+					</p>
+					<p>{event.description}</p>
+					<p>Location: {event.location}</p>
+					<p>Winners: {event.winners}</p>
+					</div>
+          		))}
 			</div>
 		</section>
 	);

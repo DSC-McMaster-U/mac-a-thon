@@ -30,3 +30,20 @@ export interface Statistic {
   category?: 'performance' | 'participation' | 'general'; // Optional category
   description?: string;       // Optional description of the statistic
 }
+
+// Past Events Schema Type
+export interface Event {
+  _id: string;
+  _type: 'Event';
+  title: string;
+  dateTimeRange: {
+    start: string;
+    end: string;
+  }
+  location: string;
+  description: string;
+  picture: {
+    _type: 'image';
+  };
+  winners: string[];
+}

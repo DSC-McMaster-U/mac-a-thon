@@ -31,7 +31,7 @@ export interface Statistic {
   description?: string;       // Optional description of the statistic
 }
 
-// Past Events Schema Type
+// Events Schema Type
 export interface Event {
   _id: string;
   _type: 'Event';

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import { client } from "@/sanity/lib/client";
-import type { FAQ, Sponsor, Statistic } from "@/types/sanity";
+import type { FAQ, Sponsor, Statistic, Event } from "@/types/sanity";
 import { urlFor } from "@/sanity/lib/image";
 
 const Hero = () => {
@@ -64,17 +64,44 @@ const About = () => {
 	);
 };
 
-const Events = async () => {
+const Events = async() => {
+	const currentDate = new Date().toISOString()
 
-  const statistics = await client.fetch(
-    `*[_type == 'statistic']{
-      _id,
-      title,
-      value,
-      category,
-      description,
-    }`,
-  );
+	const statistics = await client.fetch(
+		`*[_type == 'statistic']{
+		  _id,
+		  title,
+		  value,
+		  category,
+		  description,
+		}`,
+	  );
+	
+	  const upcomingEvents = await client.fetch(
+		`*[_type == "event" && dateTimeRange.start > $currentDate] {
+		  _id,
+		  title,
+		  dateTimeRange,
+		  location,
+		  description,
+		  picture,
+		  winners
+		}`,
+		{ currentDate }
+	  );
+	  
+	  const pastEvents = await client.fetch(
+		`*[_type == "event" && dateTimeRange.end < $currentDate] {
+		  _id,
+		  title,
+		  dateTimeRange,
+		  location,
+		  description,
+		  picture,
+		  winners
+		}`,
+		{ currentDate }
+	  );
 
   return (
 		<section id="events" className="flex flex-col justify-start items-start">
@@ -101,6 +128,39 @@ const Events = async () => {
 						className="w-full md:w-3/4 flex"
 					/>
 				</div>
+			</div>
+
+			{/* Upcoming Events Section */}
+			<div id="upcoming-events" className="flex flex-col gap-y-4 md:gap-y-8">
+				<h4>Upcoming Events</h4>
+				{upcomingEvents.map((event: Event) => (
+					<div key={event._id} className="flex flex-col gap-y-2">
+						<h5>{event.title}</h5>
+						<p>
+							{new Date(event.dateTimeRange.start).toLocaleString()} -{' '}
+							{new Date(event.dateTimeRange.end).toLocaleString()}
+						</p>
+						<p>{event.description}</p>
+						<p>Location: {event.location}</p>
+					</div>
+				))}
+			</div>
+
+			{/* Past Events Section */}
+			<div id="past-events" className="flex flex-col gap-y-4 md:gap-y-8">
+				<h4>Past Events</h4>
+				{pastEvents.map((event: Event) => (
+					<div key={event._id} className="flex flex-col gap-y-2">
+					<h5>{event.title}</h5>
+					<p>
+						{new Date(event.dateTimeRange.start).toLocaleString()} -{' '}
+						{new Date(event.dateTimeRange.end).toLocaleString()}
+					</p>
+					<p>{event.description}</p>
+					<p>Location: {event.location}</p>
+					<p>Winners: {event.winners}</p>
+					</div>
+          		))}
 			</div>
 		</section>
 	);

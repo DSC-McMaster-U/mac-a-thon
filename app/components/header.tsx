@@ -56,9 +56,9 @@ const Header = () => {
         data-testid="header"
         className="z-50 fixed left-1/2 -translate-x-1/2 top-8 hidden md:flex flex-row items-center gap-x-16 bg-google-grey bg-opacity-10 backdrop-blur py-2 px-3 rounded-full border-opacity-10"
       >
-        <a href="#hero" className="flex items-center h-fit w-fit">
+        <Link href="#hero" className="flex items-center h-fit w-fit">
           <Image src={BracketIcon} alt="GDSC Bracket Icon" className="h-5 w-auto" />
-        </a>
+        </Link>
 
         {/* Main Navigation */}
         <nav aria-label="Main Navigation" className="flex flex-1">

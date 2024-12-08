@@ -1,3 +1,15 @@
+// General Info Schema Type
+export interface GeneralInfo {
+  _id: string;                // Unique identifier for the document
+  _type: 'generalInfo';       // Document type
+  title: string;              // The title of the document
+  description: string;        // The description of the document
+  startDate: string;          // The start date of the event
+  endDate: string;            // The end date of the event
+  locationType: 'virtual' | 'in-person' | 'hybrid'; // The type of location
+  applicationStatus: 'open' | 'closed'; // The status of the application
+}
+
 // FAQ Schema Type
 export interface FAQ {
   _id: string;                // Unique identifier for the document
@@ -11,6 +23,7 @@ export interface Sponsor {
   _id: string;                // Unique identifier for the document
   _type: 'sponsor';           // Document type
   name: string;               // The name of the sponsor
+  tier: 'gold' | 'silver' | 'bronze'; // The tier of the sponsor
   logo: {
     _type: 'image';           // Image type
     asset: {
@@ -21,29 +34,19 @@ export interface Sponsor {
   website: string;            // The website of the sponsor
 }
 
+// About Schema Type
+export interface About {
+  _id: string;                // Unique identifier for the document
+  _type: 'about';             // Document type
+  mission: string;            // The mission of the organization
+  vision: string;             // The vision of the organization
+}
+
 // Statistic Schema Type
 export interface Statistic {
   _id: string;                // Unique identifier for the document
   _type: 'statistic';         // Document type
   title: string;              // The title of the statistic
-  value: number;              // Numerical value for the statistic
-  category?: 'performance' | 'participation' | 'general'; // Optional category
-  description?: string;       // Optional description of the statistic
-}
-
-// Events Schema Type
-export interface Event {
-  _id: string;
-  _type: 'Event';
-  title: string;
-  dateTimeRange: {
-    start: string;
-    end: string;
-  }
-  location: string;
-  description: string;
-  picture: {
-    _type: 'image';
-  };
-  winners: string[];
+  description: string;        // The description of the statistic
+  value: string;              // The value of the statistic
 }

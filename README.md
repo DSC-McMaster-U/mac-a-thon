@@ -1,6 +1,6 @@
-# GDSC McMaster U Solution Challenge Website
+# GDSC McMaster U Mac-a-thon Website
 
-Welcome to the GDSC McMaster U Solution Challenge Website project repository! 👋
+Welcome to the GDSC McMaster U Mac-a-thon Website project repository! 👋
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@ Welcome to the GDSC McMaster U Solution Challenge Website project repository! �
 
 ## General Info
 
-This project aims to create a modern website for the annual Solution Challenge Hackathon presented by McMaster's chapter of Google Developer Student Clubs (GDSC).
+This project aims to create a modern website for the annual Mac-a-thon Hackathon presented by McMaster's chapter of Google Developer Student Clubs (GDSC).
 
 ### Technologies Used
 
@@ -23,7 +23,6 @@ Below is an overview of the key technologies utilized in this project. Familiari
 - **Next.JS**: A framework that provides a seamless development experience.
 - **Tailwind CSS**: A utility-first CSS framework for rapid UI development, following Material Design principles.
 - **Sanity CMS**: A customizable content management system that allows for easy content updates.
-- **Firebase Hosting**: Fast and secure hosting for web applications.
 - **Jest**: Testing library.
 - **GitHub Actions**: CI/CD for automating workflows and deployments.
 

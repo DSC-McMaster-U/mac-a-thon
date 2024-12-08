@@ -13,6 +13,16 @@ export const sponsorSchema = defineType({
       validation: (Rule) => Rule.required().error('Sponsor name is required'),
     }),
     defineField({
+      name: 'tier',
+      title: 'Sponsor Tier',
+      type: 'string',
+      description: 'The tier of the sponsor (e.g. "Gold", "Silver", "Bronze")',
+      validation: (Rule) => Rule.required().error('Sponsor tier is required'),
+      options: {
+        list: ['gold', 'silver', 'bronze'],
+      },
+    }),
+    defineField({
       name: 'logo',
       title: 'Sponsor Logo',
       type: 'image',

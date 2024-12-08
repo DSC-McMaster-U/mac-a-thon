@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "@/app/globals.css";
 
 export const metadata: Metadata = {
-  title: "Solution Challenge | GDSC McMaster U",
-  description: "Solution Challenge is an annual hackathon hosted by GDSC McMaster U.",
+  title: "Mac-a-thon | GDSC McMaster U",
+  description: "Mac-a-thon is an annual hackathon hosted by GDSC McMaster U.",
   icons: [
     {
       url: "/icon.svg",

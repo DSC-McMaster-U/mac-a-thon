@@ -19,10 +19,12 @@ const HeroSection = async () => {
 		`*[_type == 'generalInfo'][0]`,
 	);
 
+	if (!generalInfo) return null;
+
 	return (
 		<section id="hero" className="pt-52">
 			<div id="hero-content" className="flex flex-col justify-center items-center w-full gap-y-4 text-center">
-				<h1>{generalInfo.title}</h1>
+				<h1>{generalInfo.title && generalInfo.title}</h1>
 				<div id="details" className="flex flex-row items-center gap-x-4">
 					<h6>{formatTimeline({startDate: new Date(generalInfo.startDate), endDate: new Date(generalInfo.endDate)})}</h6>
 					&bull;
@@ -55,6 +57,8 @@ const AboutSection = async () => {
 	const aboutInfo: About = await client.fetch(
 		`*[_type == 'about'][0]`,
 	);
+
+	if (!aboutInfo) return null;
 
 	return (
 		<section id="about">

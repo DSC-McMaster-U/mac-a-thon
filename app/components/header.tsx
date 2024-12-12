@@ -99,7 +99,7 @@ const Header = () => {
       </header>
 
       {/* Mobile Header */}
-      <header data-testid="header" className="z-50 fixed inset-0 md:hidden text-center">
+      <header data-testid="header" className="h-fit z-50 fixed inset-0 md:hidden text-center">
         {menuOpen ? (
           <div
             className="fixed inset-0 bg-white flex flex-col items-center justify-center z-50"

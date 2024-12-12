@@ -3,6 +3,7 @@ export interface GeneralInfo {
   _id: string;                // Unique identifier for the document
   _type: 'generalInfo';       // Document type
   title: string;              // The title of the document
+  club: string;               // The club name
   description: string;        // The description of the document
   startDate: string;          // The start date of the event
   endDate: string;            // The end date of the event

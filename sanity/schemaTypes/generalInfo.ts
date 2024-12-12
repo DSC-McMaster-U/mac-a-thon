@@ -13,6 +13,13 @@ export const generalInfoSchema = defineType({
             validation: (Rule) => Rule.required().error('Title is required'),
         }),
         defineField({
+            name: 'club',
+            title: 'Club',
+            type: 'string',
+            description: 'The club name',
+            validation: (Rule) => Rule.required().error('Club is required'),
+        }),
+        defineField({
             name: 'description',
             title: 'Description',
             type: 'text',

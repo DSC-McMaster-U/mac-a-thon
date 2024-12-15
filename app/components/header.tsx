@@ -112,7 +112,10 @@ const Header = () => {
             >
               <MdClose size={24} />
             </button>
-            <nav className="flex flex-col gap-y-6">
+            <nav className="flex flex-col items-center gap-y-6">
+              <Link href="#hero" onClick={handleMenuToggle} className="flex items-center h-fit w-fit">
+                <Image src={BracketIcon} alt="GDSC Bracket Icon" className="h-6 w-auto" />
+              </Link>
               {pageSections.map((section) => (
                 <Link
                   key={section.href}

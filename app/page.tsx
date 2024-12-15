@@ -90,14 +90,9 @@ const AboutSection = async () => {
 
 const StatisticsSection = async () => {
 	const statistics: Statistic[] = await client.fetch(
-		`*[_type == 'statistic']{
-			_id,
-			title,
-			description,
-			value,
-		}`,
+		`*[_type == 'statistic']`,
 	);
-
+ 
 	if (statistics.length === 0) return null;
 
 	return (

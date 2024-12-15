@@ -1,12 +1,15 @@
 "use client";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
 
 interface StickyScrollProps {
 	data: {
 		title: string;
 		description: string;
 		value: string;
+		image: { asset: { _ref: string }};
 	}[];
 }
 
@@ -53,11 +56,17 @@ const StickyScroll = ({data}: StickyScrollProps) => {
 				{/* Mobile: Mockups */}
 				<div
 				  id="key-feature-image"
-				  className="flex md:hidden w-full max-h-fit items-center justify-center rounded-full bg-google-grey bg-opacity-10 p-8"
+				  className="flex md:hidden w-full max-h-fit items-center overflow-hidden justify-center rounded-3xl bg-google-grey bg-opacity-10"
 				>
-				  <h1 className="max-h-fit md:max-h-full max-w-full">
-					{feature.value}
-				  </h1>
+					{feature.image && (
+						<Image
+						src={urlFor(feature.image.asset._ref).url()}
+						alt={feature.title}
+						className="max-h-full max-w-full"
+						width={500}
+						height={500}
+						/>
+					)}
 				</div>
 				{/* Text */}
 				<div
@@ -65,8 +74,9 @@ const StickyScroll = ({data}: StickyScrollProps) => {
 				  className="flex flex-col justify-center gap-y-2 md:h-screen"
 				>
 				  <div className="flex flex-row items-center gap-x-2">
-					<h3 className="text-2xl md:text-4xl font-semibold">
-					  {feature.title}
+					<h3 className="text-2xl md:text-4xl font-semibold gap-x-2 flex flex-row items-center">
+						<div>{feature.value}</div>
+					  	<div>{feature.title}</div>
 					</h3>
 				  </div>
 				  <p className="text-base md:text-lg">{feature.description}</p>
@@ -76,8 +86,8 @@ const StickyScroll = ({data}: StickyScrollProps) => {
 		  </div>
   
 		  {/* Right: Mockups */}
-		  <div className="hidden sticky top-[5vh] h-[90vh] md:flex items-center justify-center w-full bg-google-grey bg-opacity-10 rounded-full overflow-hidden">
-				{data.map((feature, index) => (
+		  <div className="hidden sticky top-0 h-screen rounded-3xl md:flex items-center justify-center w-full bg-google-grey bg-opacity-10 overflow-hidden">
+			  {data.map((feature, index) => (
 				<motion.div
 					key={index}
 					initial={{ opacity: 0 }}
@@ -87,13 +97,19 @@ const StickyScroll = ({data}: StickyScrollProps) => {
 					opacity: 0.5,
 					transition: { duration: 1 }
 					}}
-					className={`absolute w-full h-full flex items-center justify-center p-16 ${
+					className={`absolute w-full h-full flex items-center justify-center overflow-hidden ${
 					activeFeature === index ? "block" : "hidden"
 					}`}
 				>
-					<h1 className="max-h-fit md:max-h-full max-w-full">
-						{feature.value}
-					</h1>
+					{feature.image && (
+						<Image
+							src={urlFor(feature.image.asset._ref).url()}
+							alt={feature.title}
+							className="max-h-full max-w-full"
+							width={500}
+							height={500}
+						/>
+					)}
 				</motion.div>
 				))}
 		  	</div>

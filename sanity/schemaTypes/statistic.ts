@@ -26,5 +26,12 @@ export const statisticSchema = defineType({
             description: 'The value of the statistic',
             validation: (Rule) => Rule.required().error('Value is required'),
         }),
+        defineField({
+            name: 'image',
+            title: 'Image',
+            type: 'image',
+            description: 'The image of the statistic',
+            validation: (Rule) => Rule.required().error('Image is required'),
+        }),
     ],
 })

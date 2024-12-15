@@ -50,4 +50,9 @@ export interface Statistic {
   title: string;              // The title of the statistic
   description: string;        // The description of the statistic
   value: string;              // The value of the statistic
+  image: {
+    asset: {
+      _ref: string;           // Reference to the image asset
+    };
+  }
 }

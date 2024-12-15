@@ -26,7 +26,7 @@ const HeroSection = async () => {
 			<div id="hero-content" className="flex flex-col justify-center items-center w-full gap-y-4 text-center">
 				<h2>{generalInfo.club && generalInfo.club}</h2>
 				<h1>{generalInfo.title && generalInfo.title}</h1>
-				<div id="details" className="flex flex-row items-center gap-x-4">
+				<div id="details" className="flex flex-col md:flex-row items-center gap-x-4">
 					<h6>{formatTimeline({startDate: new Date(generalInfo.startDate), endDate: new Date(generalInfo.endDate)})}</h6>
 					&bull;
 					<h6>{capitalizeFirstLetter(generalInfo.locationType)}</h6>

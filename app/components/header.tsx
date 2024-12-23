@@ -57,7 +57,7 @@ const Header = () => {
         className="z-50 fixed left-1/2 -translate-x-1/2 top-8 hidden md:flex flex-row items-center gap-x-16 bg-google-grey bg-opacity-10 backdrop-blur py-2 px-3 rounded-full border-opacity-10"
       >
         <Link href="#hero" className="flex items-center h-fit w-fit">
-          <Image src={BracketIcon} alt="GDSC Bracket Icon" className="h-5 w-auto" />
+          <Image src={BracketIcon} alt="GDSC Bracket Icon" className="h-5 min-w-8 w-auto" />
         </Link>
 
         {/* Main Navigation */}

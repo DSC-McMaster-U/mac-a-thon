@@ -32,7 +32,7 @@ const Footer = () => {
                 <div className="flex flex-row">
                     <Link
                         href="https://gdscmcmasteru.ca"
-                        className="flex items-center h-fit w-fit"
+                        className="flex items-center h-fit min-w-10 w-fit"
                         target="_blank"
                         rel="noopener noreferrer"
                     >

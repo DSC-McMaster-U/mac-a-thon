@@ -166,7 +166,7 @@ const SponsorsSection = async () => {
 						key={sponsor._id}
 						target="_blank"
 						rel="noreferrer"
-						className="relative w-full h-24 rounded-full bg-google-grey bg-opacity-10 flex items-center justify-center"
+						className="relative w-full h-24 rounded-full bg-google-grey bg-opacity-10 flex items-center justify-center transition-all duration-300 ease-in-out hover:scale-[102%] hover:shadow-lg"
 					  >
 						<Image
 						  src={urlFor(sponsor.logo.asset).url()}

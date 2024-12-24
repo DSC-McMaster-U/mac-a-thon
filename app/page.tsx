@@ -65,11 +65,9 @@ const AboutSection = async () => {
 		<section id="about">
 			<div
 				id="about-content"
-				className="flex flex-col justify-center items-start h-full gap-y-8 md:gap-y-16"
+				className="flex flex-col justify-center items-start h-full gap-y-8 md:gap-y-16 group transition-all duration-300 ease-in-out"
 			>
-				<a href="#about" className="group transition-all duration-300 ease-in-out">	
-					<h2 className="bg-left-bottom bg-gradient-to-r from-google-mediumRed to-google-mediumRed bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">About</h2>
-				</a>
+				<h2 className="w-fit bg-left-bottom bg-gradient-to-r from-google-mediumRed to-google-mediumRed bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">About</h2>
 				<div className="flex flex-col gap-y-2 md:gap-y-4">
 					{ aboutInfo.mission && (
 						<><h3>Mission</h3><p>{aboutInfo.mission}</p></>
@@ -151,12 +149,9 @@ const SponsorsSection = async () => {
 	  <section id="sponsors">
 		<div
 		  id="sponsors-content"
-		  className="flex flex-col gap-y-8 md:gap-y-16 w-full"
+		  className="flex flex-col gap-y-8 md:gap-y-16 w-full group transition-all duration-300 ease-in-out"
 		>
-		  <a href="#about" className="group transition-all duration-300 ease-in-out w-fit">	
-			<h2 className="bg-left-bottom bg-gradient-to-r from-google-mediumBlue to-google-mediumBlue bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">Sponsors</h2>
-		  </a>
-		  <div id="sponsors-logos" className="flex flex-col gap-8 w-full">
+			<h2 className="w-fit bg-left-bottom bg-gradient-to-r from-google-mediumBlue to-google-mediumBlue bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">Sponsors</h2>		  <div id="sponsors-logos" className="flex flex-col gap-8 w-full">
 			{tierOrder.map((tier) => {
 			  const sponsorsForTier = groupedSponsors[tier];
   
@@ -208,11 +203,9 @@ const FAQSection = async () => {
 		<section id="faq">
 			<div
 				id="faq-content"
-				className="flex flex-col gap-y-8 md:gap-y-16 w-full"
-			>
-				<a href="#about" className="group transition-all duration-300 ease-in-out w-fit">	
-					<h2 className="bg-left-bottom bg-gradient-to-r from-google-mediumGreen to-google-mediumGreen bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">FAQ</h2>
-				</a>
+				className="flex flex-col gap-y-8 md:gap-y-16 w-full group transition-all duration-300 ease-in-out"
+			>	
+				<h2 className="w-fit bg-left-bottom bg-gradient-to-r from-google-mediumGreen to-google-mediumGreen bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">FAQ</h2>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
 					{faqs.length > 0 && faqs.map((faq: FAQ) => (
 						<Accordion key={faq._id} title={faq.question}>

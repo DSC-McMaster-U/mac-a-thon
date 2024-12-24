@@ -209,7 +209,7 @@ const FAQSection = async () => {
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
 					{faqs.length > 0 && faqs.map((faq: FAQ) => (
 						<Accordion key={faq._id} title={faq.question}>
-							<p>{faq.answer}</p>
+							<p className="text-lg font-[400]">{faq.answer}</p>
 						</Accordion>
 					))}
 				</div>

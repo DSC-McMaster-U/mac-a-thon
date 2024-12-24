@@ -14,7 +14,7 @@ const Accordion = ({ title, children }: AccordionProps) => {
     return (
         <div className="w-full">
             <button
-                className="flex items-center justify-between w-full px-4 py-2 text-lg font-medium text-left"
+                className={`flex items-center justify-between w-full px-4 py-2 text-lg font-[600] text-left bg-google-lightGrey transition-all duration-300 ease-in-out ${isOpen ? "rounded-t-2xl" : "rounded-2xl"}`}
                 onClick={() => setIsOpen(!isOpen)}
                 aria-expanded={isOpen}
             >
@@ -33,7 +33,7 @@ const Accordion = ({ title, children }: AccordionProps) => {
                 animate={{ opacity: isOpen ? 1 : 0, height: isOpen ? "auto" : 0 }}
                 transition={{ duration: 0.3 }}
             >
-                <div className="px-4 py-2">{children}</div>
+                <div className="px-4 py-2 bg-gray-50 rounded-b-xl">{children}</div>
             </motion.div>
         </div>
     );

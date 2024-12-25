@@ -25,8 +25,8 @@ const Footer = () => {
 
     return (
         <footer data-testid="footer">
-            <div className="flex items-center justify-center py-4 sm:py-8 text-center">
-                <p>Made with ♥ by your GDSC McMaster Team</p>
+            <div className="group flex items-center justify-center py-4 sm:py-8 text-center cursor-default">
+                <p>Made with <span className="group-hover:text-pink-500 transition-colors duration-500">♥</span> by your GDSC McMaster Team</p>
             </div>
             <nav className="flex flex-row justify-between items-center w-full py-8 border-t-2 border-google-grey">
                 <div className="flex flex-row">

@@ -22,7 +22,7 @@ const HeroSection = async () => {
 	if (!generalInfo) return null;
 
 	return (
-		<section id="hero" className="pt-52">
+		<section id="hero" className="pt-32 xl:pt-36">
 			<div id="hero-content" className="flex flex-col justify-center items-center w-full gap-y-4 text-center">
 				<h2>{generalInfo.club && generalInfo.club}</h2>
 				<h1>{generalInfo.title && generalInfo.title}</h1>

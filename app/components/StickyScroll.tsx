@@ -85,7 +85,7 @@ const StickyScroll = ({data}: StickyScrollProps) => {
 				{/* Text */}
 				<div
 				  id="key-feature-text"
-				  className="flex flex-col justify-center gap-y-4 md:h-fit md:py-44"
+				  className="flex flex-col justify-center gap-y-4 md:h-fit md:py-32"
 				>
 				  <div className="flex flex-row items-center gap-x-2">
 					<h3 className="text-2xl md:text-4xl font-semibold gap-x-2 flex flex-row items-center">
@@ -97,6 +97,7 @@ const StickyScroll = ({data}: StickyScrollProps) => {
 				</div>
 			  </div>
 			))}
+			<div className="hidden md:flex my-12"/>
 		  </div>
   
 		  {/* Right: Mockups */}

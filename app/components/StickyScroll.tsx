@@ -18,17 +18,31 @@ const StickyScroll = ({data}: StickyScrollProps) => {
 	const [activeFeature, setActiveFeature] = useState(0);
   
 	useEffect(() => {
-	  const observerOptions = { threshold: 0.5 };
+	  const observerOptions = { rootMargin: "0px", threshold: [0.25, 0.5, 0.75] };
 	  const observers: IntersectionObserver[] = [];
+
+	  const featureVisibility: Record<number, number> = {};
+
+	  const updateActiveFeature = () => {
+		const maxVisibileFeature = Object.entries(featureVisibility).reduce(
+			(maxFeature, [featureIndex, visibility]) => 
+				visibility > maxFeature[1] ? [parseInt(featureIndex), visibility] : maxFeature,
+			[-1, 0]
+		);
+		if (maxVisibileFeature[0] !== -1) {
+			setActiveFeature(maxVisibileFeature[0]);
+		}
+	  };
   
 	  data.forEach((_, index) => {
 		const element = document.getElementById(`key-feature-${index}`);
 		if (element) {
 		  const observer = new IntersectionObserver(
-			([entry]) => {
-			  if (entry.isIntersecting) {
-				setActiveFeature(index);
-			  }
+			(entries) => {
+				entries.forEach((entry) => {
+					featureVisibility[index] = entry.intersectionRatio;
+				});
+				updateActiveFeature();
 			},
 			observerOptions
 		  );
@@ -51,7 +65,7 @@ const StickyScroll = ({data}: StickyScrollProps) => {
 			  <div
 				key={index}
 				id={`key-feature-${index}`}
-				className="flex flex-col justify-center gap-y-8 md:gap-y-4"
+				className="flex flex-col justify-center gap-y-8 md:gap-y-4 md:min-h-60 h-fit"
 			  >
 				{/* Mobile: Mockups */}
 				<div
@@ -71,7 +85,7 @@ const StickyScroll = ({data}: StickyScrollProps) => {
 				{/* Text */}
 				<div
 				  id="key-feature-text"
-				  className="flex flex-col justify-center gap-y-2 md:h-screen"
+				  className="flex flex-col justify-center gap-y-4 md:h-fit md:py-44"
 				>
 				  <div className="flex flex-row items-center gap-x-2">
 					<h3 className="text-2xl md:text-4xl font-semibold gap-x-2 flex flex-row items-center">
@@ -105,7 +119,7 @@ const StickyScroll = ({data}: StickyScrollProps) => {
 						<Image
 							src={urlFor(feature.image.asset._ref).url()}
 							alt={feature.title}
-							className="max-h-full max-w-full"
+							className="max-h-full max-w-full rounded-3xl"
 							width={500}
 							height={500}
 						/>

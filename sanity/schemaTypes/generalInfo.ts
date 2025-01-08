@@ -51,14 +51,29 @@ export const generalInfoSchema = defineType({
             },
         }),
         defineField({
-            name: 'applicationStatus',
-            title: 'Application Status',
-            type: 'string',
-            description: 'The status of the application',
-            validation: (Rule) => Rule.required().error('Application Status is required'),
-            options: {
-                list: ['open', 'closed'],
-            },
+            name: 'application',
+            title: 'Application',
+            type: 'object',
+            description: 'The application status and link',
+            validation: (Rule) => Rule.required().error('Application is required'),
+            fields: [
+                defineField({
+                    name: 'status',
+                    title: 'Status',
+                    type: 'string',
+                    description: 'The status of the application',
+                    validation: (Rule) => Rule.required().error('Status is required'),
+                    options: {
+                        list: ['open', 'closed'],
+                    },
+                }),
+                defineField({
+                    name: 'link',
+                    title: 'Link',
+                    type: 'url',
+                    description: 'The link to the application',
+                }),
+            ],
         }),
     ],
 })

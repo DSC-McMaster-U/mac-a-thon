@@ -31,13 +31,20 @@ const HeroSection = async () => {
 					<h6>{capitalizeFirstLetter(generalInfo.locationType)}</h6>
 				</div>
 				<div id="application-status">
-					<h6>Applications for Mac-a-thon are now {generalInfo.applicationStatus}.</h6>
-					{ generalInfo.applicationStatus === "open" ? (
-						<a href="#application-form" className="btn">
-							Apply now
-						</a>
+					{ generalInfo.application.status === "open" ? (
+						<Link 
+							href={generalInfo.application.link} 
+							className={`flex items-center justify-center w-full px-4 py-2 text-lg font-[600] text-left bg-google-lightGrey transition-all duration-300 ease-in-out rounded-2xl`}
+							target="_blank"
+							rel="noreferrer"
+						>
+							Apply Now!
+						</Link>
 						) : (
-							<p>Stay tuned for updates on our next event!</p>
+							<>
+								<h6>Applications for Mac-a-thon are now {generalInfo.application.status}.</h6>
+								<p>Stay tuned for updates on our next event!</p>
+							</>
 						)
 					}
 				</div>

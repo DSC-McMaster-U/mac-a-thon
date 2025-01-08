@@ -8,7 +8,10 @@ export interface GeneralInfo {
   startDate: string;          // The start date of the event
   endDate: string;            // The end date of the event
   locationType: 'virtual' | 'in-person' | 'hybrid'; // The type of location
-  applicationStatus: 'open' | 'closed'; // The status of the application
+  application: {
+    status: 'open' | 'closed'; // The status of the application
+    link: string;              // The link to the application
+  }
 }
 
 // FAQ Schema Type

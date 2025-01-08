@@ -8,7 +8,6 @@ import { client } from "@/sanity/lib/client";
 import type { FAQ, Sponsor, GeneralInfo, About, Statistic } from "@/types/sanity";
 import { urlFor } from "@/sanity/lib/image";
 import { formatTimeline } from "@/utils/date";
-import MLHTrustBadge from "./components/MLHTrustBadge";
 import { capitalizeFirstLetter } from "@/utils/string";
 import Link from "next/link";
 import StickyScroll from "@/app/components/StickyScroll";
@@ -228,7 +227,6 @@ const FAQSection = async () => {
 const Home = () => {
 	return (
 		<>
-			<MLHTrustBadge />
 			<Header />
 			<main>
 				<HeroSection />
